@@ -24,7 +24,7 @@ void reverse(char* str)
 
 int main()
 {
-    char a[] = "Geeks for Geeks";
+    char a[] = "sathish";
     printf("Orignal string:%s\n", a);
 
     reverse_iteration(a);
