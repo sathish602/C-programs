@@ -1,49 +1,37 @@
 #include <stdio.h>
-int power(int x, unsigned int y)
-{
-    if (y == 0)
-        return 1;
-    if (y % 2 == 0)
-        return power(x, y / 2) * power(x, y / 2);
+#include <math.h>
 
-    return x * power(x, y / 2) * power(x, y / 2);
-}
-int order(int n)
-{
-    int res = 0;
-    while (n) {
-        res++;
-        n = n / 10;
+int main() {
+    int n, temp, digits = 0, r;
+    int sum = 0;
+
+    printf("Enter a number: ");
+    scanf("%d", &n);
+
+    temp = n;
+
+    // Step 1: Count number of digits
+    while (temp > 0) {
+        digits++;
+        temp = temp / 10;
+    
     }
-    return res;
-}
-int isArmstrong(int x)
-{
-    int n = order(x);
-    int temp = x, sum = 0;
-    while (temp) {
-        int r = temp % 10;
-        sum += power(r, n);
+    printf("count %d",digits);
+
+    temp = n;
+
+    // Step 2: Calculate Armstrong sum
+    while (temp > 0) {
+        r = temp % 10;
+        sum = sum + pow(r, digits);
         temp = temp / 10;
     }
-    if (sum == x)
-        return 1;
-    else
-        return 0;
-}
-int main()
-{
-    int x = 120;
-    if (isArmstrong(x) == 1)
-        printf("True\n");
-    else
-        printf("False\n");
 
-    x = 1634;
-    if (isArmstrong(x) == 1)
-        printf("True\n");
+    // Step 3: Check result
+    if (sum == n)
+        printf("Armstrong number");
     else
-        printf("False\n");
+        printf("Not an Armstrong number");
 
     return 0;
 }
